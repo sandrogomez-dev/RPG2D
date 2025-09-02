@@ -1,0 +1,25 @@
+# Directorios generados por Unity y que pueden ser reconstruidos
+/Library/
+/Temp/
+/Obj/
+/Builds/
+
+# Archivos de la solución de Visual Studio y de compilación
+*.csproj
+*.unityproj
+*.sln
+*.pidb
+*.suo
+
+# Archivos de caché del editor
+.vs/
+.DS_Store
+*.meta
+
+# Paquetes y otros archivos
+*.unitypackage
+
+# Credenciales de API (nunca deben subirse)
+# Por ejemplo, si tienes un archivo con tu clave de API
+# /Assets/Plugins/MyPlugin/APIKeys.txt
+# (ajusta la ruta según tu proyecto)
