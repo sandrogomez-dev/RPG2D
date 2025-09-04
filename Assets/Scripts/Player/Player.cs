@@ -47,6 +47,7 @@ public class Player : MonoBehaviour
         CheckFlip();
         OpenCloseInventory();
         OpenClosePauseMenu();
+        Attack();
     }
     void FixedUpdate()
     {
@@ -101,7 +102,7 @@ public class Player : MonoBehaviour
 
     void Attack()
     {
-        if (Input.GetMouseButtonDown(0) && !isAttacking)
+        if (Input.GetKeyDown(KeyCode.Space) && !isAttacking)
         {
             int randomIndex = Random.Range(0, 2);
             animator.SetInteger("AttackIndex", randomIndex);
