@@ -16,6 +16,9 @@ public class Player : MonoBehaviour
 
     private bool gameIsPaused = false;
 
+    private bool isAttacking = false;
+    private bool canMove = true;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -29,6 +32,11 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (isAttacking)
+            canMove = false;
+        else
+            canMove = true;
+
         movementInput.x = Input.GetAxisRaw("Horizontal");
         movementInput.y = Input.GetAxisRaw("Vertical");
 
@@ -42,7 +50,19 @@ public class Player : MonoBehaviour
     }
     void FixedUpdate()
     {
-        rb2D.linearVelocity = movementInput * speed;
+
+        if (canMove)
+        {
+            rb2D.linearVelocity = movementInput * speed;
+
+        }
+        else
+        {
+            rb2D.linearVelocity = Vector2.zero;
+
+        }
+
+
     }
 
     void CheckFlip()
@@ -76,5 +96,26 @@ public class Player : MonoBehaviour
                 gameIsPaused = true;
             }
         }
+    }
+
+
+    void Attack()
+    {
+        if (Input.GetMouseButtonDown(0) && !isAttacking)
+        {
+            int randomIndex = Random.Range(0, 2);
+            animator.SetInteger("AttackIndex", randomIndex);
+            animator.SetTrigger("DoAttack");
+        }
+    }
+
+    public void StartAttack()
+    {
+        isAttacking = true;
+    }
+
+    public void EndAttack()
+    {
+        isAttacking = false;
     }
 }
